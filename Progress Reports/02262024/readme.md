@@ -25,6 +25,14 @@ for somereason, video only shows up as 4 seconds.
 Goals for Week of Spring Break
 Find a suitable wireless radio module capable of streaming at least 12,144 kbps
 
+## Pictures
+![Alt text](PXL_20240226_074633848.MP.jpg?raw=true "Raspberry Pi GPIO Pins Used")
+![Alt text](PXL_20240226_074622974.MP.jpg?raw=true "FT232RL Serial to USB Adapter")
+![Alt text](PXL_20240226_074614310.MP.jpg?raw=true "Setup")
+![Alt text](test.jpg?raw=true "First image")
+
+
+
 ## Useful Bookmarks:
 https://www.raspberrypi.com/documentation/computers/camera_software.html#getting-started
 https://github.com/raspberrypi/picamera2/blob/main/examples/capture_mjpeg.py
