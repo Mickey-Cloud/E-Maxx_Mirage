@@ -1,0 +1,1 @@
+Got the raspberry pi hooked up to my computer through UART. Connected to it through the Windows program Putty. Have started installing picamera related puthon packages but have had errors in finding apt repository candidate. 
