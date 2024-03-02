@@ -1,0 +1,10 @@
+03022024
+How far can robot go?
+What should the range be?
+Will we need to modify the wireless antenna to make it go farther?
+Should we use a directional antenna?
+What camera have we decided on?
+Show connection strength status on the VR HUD.
+Use a LIDAR scanner / camera to create a surrounding area map to display in the VR HUD
+Create a simulation of the wireless signal propogation in matlab using FDTD model.
+We are going to need transievers, both the robot and control station need to transmit and receive.
