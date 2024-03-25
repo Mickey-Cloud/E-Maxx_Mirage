@@ -8,6 +8,9 @@ Use separate power supply. Usb power might not have enough juice, amps.
 apparently the rasberry pi os i installed doesn't come with dhcpcd library
 i installed it with sudo apt install dhcpcd5
 
+# 3/20/2024
+Decided to switch to a peer to peer network instead of a local area network. The computer only needs to connect to the raspberry pi.
+
 
 
 ## Useful Bookmarks

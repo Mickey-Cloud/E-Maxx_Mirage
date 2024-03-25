@@ -1,0 +1,2 @@
+# 3/24/2024
+Completely reset the raspberry pi, it got too much of a hastle to manually install every package so we downloaded an os with all the recommended software. 14GB in size compared to less than a gig.
