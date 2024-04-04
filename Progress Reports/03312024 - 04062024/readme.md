@@ -178,5 +178,26 @@ it was choppy and very delayed but pretty good resolution. I suspect that becaus
 
 Note, i had to  turn off the share this network option in my laptops wifi adapter then turn it back on for it  to successfully connect to the pi. I also used a usb ethernet adaptere to  get it to work. 
 
+Okay, fresh install notes: Turn off VPN while trying to connect to raspberry pi through ethernet, biggest thing to first do is just install the raspberry pi os using the handy software they provide. Change the hostname, setup the username and password, setup timezone, then enable ssh, all in the raspberry pi installerconfig. Turn off, if not already off, the network sharing on laptop wifi adapter. Then turn back on and select the ethernet port that you have connected to the pi. Connect using hostname of the raspberry pi, in this case its hdr2.local. The ssh command is: ```ssh hdr2@hdr2.local``` password is "1234" again. Once that is setup and the pi is using internet from your computer, run update and upgrade. Then install the three packages in the medium article, its the most recent. In fact, just follow that tutorial. 
+
+Okay, thats all i got to for tonight, again, the "/etc/dhcpcd.conf" file was missing. I checked the old pi version that worked and I guess that somehow had one? Maybe I just made that file too and pasted a template? im not sure yet. Then, I remebered something about the location of the file changing so i tried to find the forum post for that. One of the responses in that post said that it was now located here: "/etc/dhcp/dhclient.conf". I checked that file on the old pi and it turns out, I did add the "nohook wpa_supplicant" stuff to it, however, the ip_address was different than any of the guides I rememeber seeing:
+```
+interface wlan0
+    static ip_address=192.168.50.1/24
+    nohook wpa_supplicant
+```
+it has .50. instead of .4.
+I dont know if that matters or not. So in summary, the old working pi had the "/etc/dhcpcd.conf" file and the addition shown above to the "/etc/dhcp/dhclient.conf" file so Im not sure which one made it work. Gonna have to troubleshoot that tomorrow. I guess i could see if the dhcpcd5 package was installed on the old one, that was another reply in that post i mentioned above. Or maybe none of the stuff ive mentioned have been it and the solution is actually from this other forum post that looks all complicated, see "complicated network manager crap" in the bookmarks. 
+
+Anyway, im tired and I gotta work early tomorrow, I left off on step 3 of that medium article guide for wireless router thinger. I have not edited the "/etc/dhcp/dhclient.conf" file yet. Goodnight yall
+
+quick last note, there are two iptables packages or things on the new pi, because I ran this command from a different guide first, on accident: ```sudo apt install hostapd dnsmasq iptables``` then I ran the command for iptable stuff mentioned in the medium guide: ```sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent``` So, I guess for future installs and setups, do both commands?? 
+
 ## Bookmarks used
-https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking
+Overclocking the raspberry 4 gpu: https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking
+Guide for setting up ssh over ethernet: https://medium.com/@jrcharney/connect-your-raspberry-pi-to-your-computer-via-ethernet-4564e1e68922
+Medium guide to follow for setting up raspberry pi as access point: https://vaibhavji.medium.com/turn-your-raspberrypi-into-a-wifi-router-5ade510601de
+Forum post about missing /etc/dhcpcd.conf file: https://raspberrypi.stackexchange.com/questions/123897/etc-dhcpcd-conf-missing-on-rasbian
+complicated network manager crap: https://raspberrypi.stackexchange.com/questions/37920/how-do-i-set-up-networking-wifi-static-ip-address-on-raspbian-raspberry-pi-os/37921#37921
+
+
