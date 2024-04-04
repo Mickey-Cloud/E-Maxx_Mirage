@@ -195,9 +195,11 @@ quick last note, there are two iptables packages or things on the new pi, becaus
 
 ## Bookmarks used
 Overclocking the raspberry 4 gpu: https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking
+
 Guide for setting up ssh over ethernet: https://medium.com/@jrcharney/connect-your-raspberry-pi-to-your-computer-via-ethernet-4564e1e68922
+
 Medium guide to follow for setting up raspberry pi as access point: https://vaibhavji.medium.com/turn-your-raspberrypi-into-a-wifi-router-5ade510601de
+
 Forum post about missing /etc/dhcpcd.conf file: https://raspberrypi.stackexchange.com/questions/123897/etc-dhcpcd-conf-missing-on-rasbian
+
 complicated network manager crap: https://raspberrypi.stackexchange.com/questions/37920/how-do-i-set-up-networking-wifi-static-ip-address-on-raspbian-raspberry-pi-os/37921#37921
-
-
