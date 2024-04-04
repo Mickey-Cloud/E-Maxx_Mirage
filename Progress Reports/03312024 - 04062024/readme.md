@@ -153,3 +153,30 @@ https://www.raspberrypi.com/documentation/computers/camera_software.html#introdu
 
 picamera2 documentation
 https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+
+# 4/1/2024
+Started researching turning 2d camera footage into 3d footage for VR. Started downloading unity. Setup a testing unity vr default project. I got my headset hooked up to it. The headset is an htc vive pro, with steam base station 2.0s. I was able to run the default scene, walk around, manipulate objects. I got a very simple script working on an empty game object. Made a skybox display that displayed a camera hooked up to my computer. Got a very very crude version of what we want working. Will upload the unity project code once I further develop it. Its a three gig folder, big. All  i had to do to run the game was have the vr headset connected with steam vr running. It worked seamlessly basically.
+
+## Might be useful Bookmarks
+https://www.reddit.com/r/virtualreality/comments/1bioyfi/how_to_feed_a_usb_camera_directly_to_a_specific/
+https://community.theta360.guide/t/stream-ricoh-theta-to-unity-skybox/4812
+https://www.stereolabs.com/products/zed-2
+https://www.youtube.com/watch?v=VVznFTIDsUg
+https://github.com/dirtshell/amelia_viewer
+https://www.sitepoint.com/streaming-a-raspberry-pi-camera-into-vr-with-javascript/
+
+# 4/3/2024
+I acquired a raspberry pi 4 yesterday and got it to stream 720p footage over wifi. It does seem to have a delay though still. The raspberry pi 4 should be faster than the three, I found a forum post talking about how the raspberry pi 3 couldn't output the cameras specified 720p100 mode. I think the main cause  for the delay right now is the encoder. The way i currently understand it, raw data comes from the camera, goes through an encoder to create images, which then gets turned into a specific video format. I right clicked on the stream in the browser and clicked save. It kept downloading until i stopped the stream. I opened it in vlc and it showed an image then immediately closed. it was of file type .mjpg.
+
+I got a single command to stream over rtsp using libcamera. 
+```
+libcamera-vid --info-text "" --level 4.2 --framerate 100 --width 1080 --height 720 -t 0 --inline -o - | cvlc  stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554/stream1}' :demux=h264
+```
+
+I was able to view it in vlc by connecting to a network stream using the url: "rtsp://hdr.local:8554/stream1"
+it was choppy and very delayed but pretty good resolution. I suspect that because I'm using libcamera instead of raspivid that everything is outdated. Also, after switching to the raspberry pi 4 without re loading the os, im guessing settings are still manually set to raspberry pi 3 specs. Im gonna redo the os and make sure its fully updated. I will be using a different sd card to avoid losing all progress. Oh, also, there is a note  in the official rasspberry pi camera documentation that says the following: "On a Pi 4, you can overclock the GPU to improve performance by adding gpu_freq=550 or higher in /boot/firmware/config.txt. See the overclocking documentation for further details."
+
+Note, i had to  turn off the share this network option in my laptops wifi adapter then turn it back on for it  to successfully connect to the pi. I also used a usb ethernet adaptere to  get it to work. 
+
+## Bookmarks used
+https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking
