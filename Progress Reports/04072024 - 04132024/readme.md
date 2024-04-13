@@ -147,6 +147,13 @@ FFPlay, be in same folder as ffplay.exe
 
 ```.\ffplay.exe udp://@:8000 -fflags nobuffer -flags low_delay -framedrop```
 
+FFPlay stats:
+![Alt text](ffplay.jpg?raw=true "FFPlay Statistics")
+
+![Alt text](vlc_codex.jpg?raw=true "VLC Codec Info")
+
+![Alt text](vlc_statistics.jpg?raw=true "VLC Statistics")
+
 ## Useful bookmarks:
 Turn on autostart for hotspot:
 https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/#:~:text=Configure%20hotspot%20network&text=When%20your%20Raspberry%20Pi%20boots,higher%20than%20any%20other%20connection.
