@@ -150,7 +150,7 @@ FFPlay, be in same folder as ffplay.exe
 FFPlay stats:
 ![Alt text](ffplay.jpg?raw=true "FFPlay Statistics")
 
-![Alt text](vlc_codex.jpg?raw=true "VLC Codec Info")
+![Alt text](vlc_codec.jpg?raw=true "VLC Codec Info")
 
 ![Alt text](vlc_statistics.jpg?raw=true "VLC Statistics")
 
