@@ -26,7 +26,7 @@ ExecStartPre=/bin/sleep 15
 [Install]
 WantedBy=multi-user.target
 ```
-Also had an issue where the raspberry pi camera module wasn't being detected. I had to disable legacy camera support in raspi-config (make sure to run as root, also, it might have been enabling it that fixed it, I can't rememeber, hell, maybe this didn't do anything cause I was changing all sorts of things trying to get it to show up). Then in the "/boot/config.txt" file, I commented out the line that had: ```start_x=1``` and added this line instead: ```camera_auto_detect=1``` That got the camera working finally. Was able to test it by running the ```libcamera-still``` command. Also, note, its not rpicam for this raspberry pi for some reason. Its libcamera. I think I must have downloaded an older version of Raspberry Pi OS. 
+Also had an issue where the raspberry pi camera module wasn't being detected. I had to disable legacy camera support in raspi-config (make sure to run as root, also, it might have been enabling it that fixed it, I can't rememeber, maybe this didn't do anything cause I was changing all sorts of things trying to get it to show up). Then in the "/boot/config.txt" file, I commented out the line that had: ```start_x=1``` and added this line instead: ```camera_auto_detect=1``` That got the camera working finally. Was able to test it by running the ```libcamera-still``` command. Also, note, its not rpicam for this raspberry pi for some reason. Its libcamera. I think I must have downloaded an older version of Raspberry Pi OS. 
 
 I was unable to get picamera2 streaming stuff to work. Well it ran, I just didn't figure out how to view the streamed footage. I tried using VLC, didn't work. I wasn't doing something right. Maybe I was using a reserved port number.
 
