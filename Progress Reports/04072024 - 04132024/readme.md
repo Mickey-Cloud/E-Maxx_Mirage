@@ -112,7 +112,7 @@ I adjusted some settings in vlc to make it faster. According to the pi stream ou
 
 I believe VLC is the bottleneck here, I'm trying OBS now
 
-Holy shit!! I was using the wrong resolution. Its working good now. 720p is not 1080 by 720, its 1280 by 720, im stupid.
+Holy toleto!! I was using the wrong resolution. Its working good now. 720p is not 1080 by 720, its 1280 by 720, im stupid.
 
 so heres the command for the pi:
 
