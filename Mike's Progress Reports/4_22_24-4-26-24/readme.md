@@ -21,7 +21,8 @@ I am using an old project from another class for the initial setup, because I di
 
 For the oculus its an meta quest 2 that is running through airlink with the computer and it has been possible to pull out various values from the headset and display them on a canvas on the screen. 
 
-The values in red are the position data of the left controller. The red values are first the positin values of the headset and second the rotation values in the headset.
+The values in red are the position data of the left controller. The blue values are first the positin values of the headset and second the rotation values in the headset.
+
 ![Position and rotation values](OculusDataValues.png)
 
 
