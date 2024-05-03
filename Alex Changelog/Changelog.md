@@ -10,3 +10,5 @@
 
  # 5/3/2024
  Finalized board desing. Sent board design to PCB way waiting on quote and ETA for new board. I will also add the 12v to 5v power supply so that the raspberry pi 3 can be powered using the same power cord that the transmitter is using.
+
+ update the power supply works now the transmitter and raspberry pi share a power supply
