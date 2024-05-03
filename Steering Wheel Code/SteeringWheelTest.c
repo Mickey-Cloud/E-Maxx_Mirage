@@ -25,6 +25,8 @@
 	int file_i2c;
     int file_i2c1;
 	unsigned char buffer[60] = {0};
+    int CurrentSteer;
+    int CurrentDrive;
 
 //mutex lock
 pthread_mutex_t buffer_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -83,15 +85,30 @@ void writeI2c(int device, int length, int data){
     printf("Attempt to write.\n");
     buffer[0] = 0x00;
     buffer[1] = data;
+
+    //checks to see if its already written if written then it will exit and not write
+    if(device == file_i2c && data == CurrentSteer){
+        return;
+    }
+        if(device == file_i2c1 && data == CurrentDrive){
+        return;
+    }
+    //write data
 	if (write(device, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 	{
-        //int test = write(device, buffer, length);
+
 		/* ERROR HANDLING: i2c transaction failed */
-		//printf("Failed to write to the i2c bus.\n");
+		printf("Failed to write to the i2c bus.\n");
         
     }
     else{
         printf("Transmitted: 0x%x%x\n", buffer[0],buffer[1]);
+        if(device== file_i2c){
+            CurrentSteer = data;
+        }
+        else if(device==file_i2c1){
+            CurrentDrive = data;
+        }
     }
     ioctl(device, I2C_RDWR, 0);
     release_lock();
