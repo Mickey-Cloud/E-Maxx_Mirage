@@ -131,3 +131,13 @@ if __name__ == "__main__":
 The python code was put in the Documents folder, called it receive.py, run it with ```./receive.py```
 Right now, the raspberry pi just outputs the two values in degrees into the console
 Oh and the ```10.42.0.46``` is the ip address of the computer running the unity program, that has the vr headset connected to it. I've gotta try connecting my vr headset to my laptop and just using a single baseestation for headset tracking. Good progress made today.  
+
+# 5/1/2024
+Started looking at different stepper motors. All the ones I found were 12 volts. I found a 3D printer stepper motor thats 5 volts. Got it working with an arduino.
+
+## Bookmarks
+A4988 4 pin bipolar stepper motor controller driver
+https://www.makerguides.com/a4988-stepper-motor-driver-arduino-tutorial/
+
+L293D 5 pin or 4 pin bipolar or unipolar stepper motor controller
+https://lastminuteengineers.com/stepper-motor-l293d-arduino-tutorial/
