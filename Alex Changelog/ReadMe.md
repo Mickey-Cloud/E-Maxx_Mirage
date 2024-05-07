@@ -15,5 +15,7 @@
 
  # 5/7/2024
  Turns out PCBway is going to be expensive and slow to provide our board. Made the decision to order 3 boards from OSH Park and solder ourselves. Should be possible to use components already obtained but I may purchse some potentiometers. Our PCB should be After Dark so they will look like this
+
   ![alt text](<After Dark-1.jpg>) 
+  
   which is sick. Later this week I plan on doing some tests with radio interference. I also started the Bill of materials so that we can keep track of expenses.
