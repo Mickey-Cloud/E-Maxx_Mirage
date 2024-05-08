@@ -19,3 +19,10 @@
   ![alt text](<After Dark-1.jpg>) 
   
   which is sick. Later this week I plan on doing some tests with radio interference. I also started the Bill of materials so that we can keep track of expenses.
+
+  # 5/8/2024
+  Today I spent hours trying to figure how how to control the force feedback on the steering wheel. Turns out I needed to update the linux kernal. Once updated I was finally able to use a command to move the wheel.
+
+  https://www.kernel.org/doc/html/v4.13/input/ff.html
+
+  This website supplies documentation on how to write a program to control the rumble. I will write the program later but now I have confirmation that force feedback will work. I was able to supply constant force as well as rumble and a spring like motion which pushes the wheel back to its resting state.
