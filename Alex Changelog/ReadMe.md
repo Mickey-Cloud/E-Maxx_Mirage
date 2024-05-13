@@ -26,3 +26,6 @@
   https://www.kernel.org/doc/html/v4.13/input/ff.html
 
   This website supplies documentation on how to write a program to control the rumble. I will write the program later but now I have confirmation that force feedback will work. I was able to supply constant force as well as rumble and a spring like motion which pushes the wheel back to its resting state.
+
+  # 5/13/2024
+  Started writing force feedback code. My test code is in ForceFeedbackTest.c. Currently the program should start force feedback and enable a spring effect. I do not know if it currently works as I have not had time to run to the lab yet but I will try to get to the lab before our group meets on wednesday. 
