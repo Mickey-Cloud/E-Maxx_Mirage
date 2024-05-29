@@ -34,3 +34,6 @@
 
   # 5/23/2024
   Started refining driving and have an ETA on new board. I plan on working on refining the driving experience as well as soldering the new board next week. 
+
+  # 5/28/2024
+  Sad day board blew up again. The fire was cool though. It was discouraging and sad that the third design does not work. I believe it was shorted between SDA and GND. However we did continuity tests and it should have worked. Kyla is going to attempt to solder another one to see if we can get it to work. I will work on designing a simplified new version 4. This one will be super simple and will basically act as a breadboard that models our other circuit exactly. ![alt text](<Version3_soldered board blown up-1.jpg>)
