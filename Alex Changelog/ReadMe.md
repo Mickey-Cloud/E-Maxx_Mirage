@@ -37,3 +37,7 @@
 
   # 5/28/2024
   Sad day board blew up again. The fire was cool though. It was discouraging and sad that the third design does not work. I believe it was shorted between SDA and GND. However we did continuity tests and it should have worked. Kyla is going to attempt to solder another one to see if we can get it to work. I will work on designing a simplified new version 4. This one will be super simple and will basically act as a breadboard that models our other circuit exactly. ![alt text](<Version3_soldered board blown up-1.jpg>)
+
+  # 5/29/2024
+  I have finished designing a super simple revision 4. This design will simply connect two of the adafruit breakout boards with 4 extra potentiometers. This was the simplest design I could come up with as it uses all known working parts as well as models the circuit on our working breadboard exactly. I am currently waiting for other people to check my work and will hopefully have it ordered by the end of the week. Fingers crossed this is the last board we need to make.
+  ![alt text](rev4_design-1.png)
