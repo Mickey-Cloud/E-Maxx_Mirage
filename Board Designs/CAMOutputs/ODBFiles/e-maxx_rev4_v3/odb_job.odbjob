@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2024-05-31T00:15:15Z",
+        "GenerationSoftware": {
+            "Application": "Fusion Electronics",
+            "Vendor": "Autodesk",
+            "Version": "9.7.0"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.671119,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "E-MAXX Rev4 v2"
+        },
+        "Owner": "Alexander Cromar <u1285609@utah.edu>",
+        "Size": {
+            "X": 50.78,
+            "Y": 54.28
+        }
+    }
+}

@@ -1,0 +1,18 @@
+UNITS=MM
+ID=465
+#
+#Num Features
+#
+F 1
+
+#
+#Layer features
+#
+S P 0
+OB 0 0 I
+OS 0 54.28
+OS 50.78 54.28
+OS 50.78 0
+OS 0 0
+OE
+SE

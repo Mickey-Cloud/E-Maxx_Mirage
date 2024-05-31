@@ -41,3 +41,7 @@
   # 5/29/2024
   I have finished designing a super simple revision 4. This design will simply connect two of the adafruit breakout boards with 4 extra potentiometers. This was the simplest design I could come up with as it uses all known working parts as well as models the circuit on our working breadboard exactly. I am currently waiting for other people to check my work and will hopefully have it ordered by the end of the week. Fingers crossed this is the last board we need to make.
   ![alt text](rev4_design-1.png)
+
+  # 5/30/2024
+Just ordered Rev4 after making some slight changes to the design. I ordered it in purple to hopefully get the boards quicker.
+![alt text](<rev4 final design-1.png>)
