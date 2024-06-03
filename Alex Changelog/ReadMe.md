@@ -45,3 +45,6 @@
   # 5/30/2024
 Just ordered Rev4 after making some slight changes to the design. I ordered it in purple to hopefully get the boards quicker.
 ![alt text](<rev4 final design-1.png>)
+
+# 6/3/2024
+Began work on 3d design. So far I have just an outline of the back of the transmitter. I will need more measurements to complete the design.
