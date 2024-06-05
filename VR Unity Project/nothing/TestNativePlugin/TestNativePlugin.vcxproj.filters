@@ -13,42 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Unity">
-      <UniqueIdentifier>{fedc01ed-175d-420b-91d7-0a9c79f5238f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NativePlugin.cpp">
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestNativePlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestNativePlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="NativePlugin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphicsD3D9.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphicsD3D11.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphicsD3D12.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphicsMetal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityGraphicsVulkan.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unity\IUnityInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IUnityRenderingExtensions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
