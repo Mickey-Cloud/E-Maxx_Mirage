@@ -48,3 +48,6 @@ Just ordered Rev4 after making some slight changes to the design. I ordered it i
 
 # 6/3/2024
 Began work on 3d design. So far I have just an outline of the back of the transmitter. I will need more measurements to complete the design.
+
+# 6/4/2024
+Kyla and I tried another v3 and got some success. It worked for a short period of time but quickly stopped working. We are going to start 3d designing the enclosure while we wait for v4 to come in the mail. We plan on having designs in two weeks.
