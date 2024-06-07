@@ -48,3 +48,10 @@ Just ordered Rev4 after making some slight changes to the design. I ordered it i
 
 # 6/3/2024
 Began work on 3d design. So far I have just an outline of the back of the transmitter. I will need more measurements to complete the design.
+
+# 6/6/2024
+Started work on the 3d Print enclosure. I have no 3d modelling experience but I wanted to make all of this by scratch. I have started by making postes and a little holder for the raspberry pi. I only want  the usb ports to be accessible.
+
+![alt text](<Starting 3D Enclosure.png>)
+
+I will work on this more this weekend and get some hard measurements. I expect my rev 4 board to come sometime mid next week.
