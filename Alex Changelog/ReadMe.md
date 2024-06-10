@@ -59,3 +59,10 @@ Started work on the 3d Print enclosure. I have no 3d modelling experience but I 
 ![alt text](<Starting 3D Enclosure.png>)
 
 I will work on this more this weekend and get some hard measurements. I expect my rev 4 board to come sometime mid next week.
+
+# 6/10/2024
+Rev 4 finally came in the mail today.
+![alt text](<Rev 4 board.jpg>)
+I didn't have the potentiometers to test today but I did use my old digital potentiometers and performed a voltage test on the new board and it looks promising. So far I was able to prove that I can communicate using the raspberry pi to commnicate and change the voltage properly. I used a 1v test voltage. We are meeting wednesday to discuss the camera system and we also plan on adding the voltage regulator potentiometers and we should be able to have a complete board and steering control by wednesday! You can see my test with the DS3502's below.
+
+![alt text](<Rev 4 Voltage test.jpg>)
