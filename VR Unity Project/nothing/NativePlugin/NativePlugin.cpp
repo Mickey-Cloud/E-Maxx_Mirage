@@ -14,9 +14,9 @@ uint32_t Plasma(int x, int y, int width, int height, unsigned int frame)
 
     float l = sinf(px * sinf(time * 1.3f) + sinf(py * 4 + time) * sinf(time));
 
-    uint32_t r = sinf(l * 6) * 127 + 127;
-    uint32_t g = sinf(l * 7) * 127 + 127;
-    uint32_t b = sinf(l * 10) * 127 + 127;
+    uint32_t r = 0xff;
+    uint32_t g = 0x00;
+    uint32_t b = 0x00;
 
     return r + (g << 8) + (b << 16) + 0xff000000u;
 }
@@ -31,8 +31,8 @@ void TextureUpdateCallback(int eventID, void* data)
         unsigned int frame = params->userData;
 
         uint32_t* img = (uint32_t*) malloc(params->width * params->height * 4);
-        for (int y = 0; y < params->height; y++)
-            for (int x = 0; x < params->width; x++)
+        for (int y = 0; y < params->height; y++) 
+            for (int x = 0; x < params->width; x++) 
                 img[y * params->width + x] =
                 Plasma(x, y, params->width, params->height, frame);
 
