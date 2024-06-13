@@ -219,15 +219,17 @@ void connectI2c(){
 */
 void writeI2c(int device, int length, int data){
     acquire_lock();
-    printf("Attempt to write.\n");
+    //printf("Attempt to write.\n");
     buffer[0] = 0x00;
     buffer[1] = data;
 
     //checks to see if its already written if written then it will exit and not write
     if(device == file_i2c && data == CurrentSteer){
+        //printf("currentSteer\n");
         return;
     }
         if(device == file_i2c1 && data == CurrentDrive){
+            //printf("currentDrive\n");
         return;
     }
     //write data
@@ -359,7 +361,7 @@ int main() {
 
         // Check if the event is an absolute axis event (such as a trigger or stick movement)
         if (ev.type == EV_ABS) {
-            if (ev.code == ABS_Z) { // Brake Pressed
+            if (ev.code == ABS_RZ) { // Brake Pressed
                 printf("Brake pressed reading value: %d\n", ev.value);
                  accelerateValue = (float)ev.value / accelerateRange * 127;
                 accelerateValue -= reverseOffset;
@@ -387,7 +389,7 @@ int main() {
                 printf("clutch pressed reading value: %d\n", ev.value);
             }
             if (ev.code == ABS_X) { // Steering Wheel input
-                printf("Steering wheel moved reading value: %d\n", ev.value);
+                //printf("Steering wheel moved reading value: %d\n", ev.value);
                 steerValue = (float)ev.value / steerRange * 127;
                 steerValue = 127 - steerValue;
                 steerValue -= steerOffset;
@@ -398,7 +400,7 @@ int main() {
                 else if (steerValue < 0 ){
                     steerValue = 0;
                 }
-                printf("steerValue: %d\n",steerValue);
+                //printf("steerValue: %d\n",steerValue);
             writeI2c(file_i2c,2,steerValue);
 
 
@@ -423,9 +425,9 @@ int main() {
                 update_spring_effect(fd,(((float)accelerateValue / 127) *131070)-65535);
 
 
-                if(accelerateValue > 70){
-                    accelerateValue = 70;
-                }
+                // if(accelerateValue > 70){
+                //     accelerateValue = 70;
+                // }
                 printf("accelerateValue: %d\n",accelerateValue);
                 writeI2c(file_i2c1,2,accelerateValue);
 

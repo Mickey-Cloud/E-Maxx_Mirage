@@ -66,3 +66,7 @@ Rev 4 finally came in the mail today.
 I didn't have the potentiometers to test today but I did use my old digital potentiometers and performed a voltage test on the new board and it looks promising. So far I was able to prove that I can communicate using the raspberry pi to commnicate and change the voltage properly. I used a 1v test voltage. We are meeting wednesday to discuss the camera system and we also plan on adding the voltage regulator potentiometers and we should be able to have a complete board and steering control by wednesday! You can see my test with the DS3502's below.
 
 ![alt text](<Rev 4 Voltage test.jpg>)
+
+# 6/12/2024
+The rev 4 board woks great! I will start working on the enclosure but it works great!
+![alt text](REV_4_FInal.jpg)
