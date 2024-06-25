@@ -5,8 +5,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System;
 
-public class transmit : MonoBehaviour
+public class Transmit : MonoBehaviour
 {
     private TcpListener listener;
     private TcpClient client;
@@ -21,6 +22,7 @@ public class transmit : MonoBehaviour
         Debug.Log("Server started on localhost:8080");
         clientThread = new Thread(new ThreadStart(HandleClient));
         clientThread.Start();
+        StartCoroutine(SendDataCoroutine());
     }
 
     void HandleClient()
@@ -56,21 +58,25 @@ public class transmit : MonoBehaviour
         }
     }
 
-    void Update()
+    IEnumerator SendDataCoroutine()
     {
-        if (stream != null && client != null && client.Connected)
+        while (isRunning)
         {
-            try
+            if (stream != null && client != null && client.Connected)
             {
-                double xAxis = gameObject.transform.localRotation.eulerAngles.x;
-                double yAxis = gameObject.transform.localRotation.eulerAngles.y;
-                byte[] data = Encoding.ASCII.GetBytes($"{xAxis} {yAxis}\n");
-                stream.Write(data, 0, data.Length);
+                try
+                {
+                    double xAxis = gameObject.transform.localRotation.eulerAngles.x;
+                    double yAxis = gameObject.transform.localRotation.eulerAngles.y;
+                    byte[] data = Encoding.ASCII.GetBytes($"{Math.Round(xAxis, 2)} {Math.Round(yAxis, 2)}\n");
+                    stream.Write(data, 0, data.Length);
+                }
+                catch (System.Exception e)
+                {
+                    Debug.Log("Failed to send data: " + e.Message);
+                }
             }
-            catch (System.Exception e)
-            {
-                Debug.Log("Failed to send data: " + e.Message);
-            }
+            yield return new WaitForSeconds(0.05f); // Send data every 100ms
         }
     }
 
