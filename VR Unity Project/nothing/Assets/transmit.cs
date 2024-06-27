@@ -14,7 +14,8 @@ public class Transmit : MonoBehaviour
     private NetworkStream stream;
     private Thread clientThread;
     private bool isRunning = true;
-    private int thingy = 0;
+    // private int thingy = 0;
+    public bool usingMurphs;
 
     void Start()
     {
@@ -67,28 +68,29 @@ public class Transmit : MonoBehaviour
             {
                 try
                 {
-                    float xAxis = gameObject.transform.eulerAngles.x;
-                    double yAxis = gameObject.transform.eulerAngles.y;
-                    double zAxis = gameObject.transform.eulerAngles.z;
-                    thingy += 1;
-                    string thing = "";
-                    if (thingy > 2)
-                    {
-                        thingy = 0;
-                    }
-                    switch (thingy)
-                    {
-                        case 0:
-                            thing = $"Y{Math.Round(xAxis, 2)}" + '\r';
-                            break;
-                        case 1:
-                            thing = $"P{Math.Round(yAxis, 2)}" + '\r';
-                            break;
-                        case 2:
-                            thing = $"R{Math.Round(zAxis, 2)}" + '\r';
-                            break;
-                    }
-                    byte[] data = Encoding.ASCII.GetBytes($"R{zAxis}" + '\r' + $"Y{xAxis}" + '\r' + $"P{yAxis}" + '\r');
+                    double xAxis = Math.Round(gameObject.transform.eulerAngles.x, 3);
+                    double yAxis = Math.Round(gameObject.transform.eulerAngles.y, 3);
+                    double zAxis = Math.Round(gameObject.transform.eulerAngles.z, 3);
+                    /*                    thingy += 1;
+                                        string thing = "";
+                                        if (thingy > 2)
+                                        {
+                                            thingy = 0;
+                                        }
+                                        switch (thingy)
+                                        {
+                                            case 0:
+                                                thing = $"Y{Math.Round(xAxis, 2)}" + '\r';
+                                                break;
+                                            case 1:
+                                                thing = $"P{Math.Round(yAxis, 2)}" + '\r';
+                                                break;
+                                            case 2:
+                                                thing = $"R{Math.Round(zAxis, 2)}" + '\r';
+                                                break;
+                                        }*/
+                    string stringData = usingMurphs ? $"{xAxis} {yAxis}\n" : $"R{zAxis}" + '\r' + $"Y{yAxis}" + '\r' + $"P{xAxis}" + '\r';
+                    byte[] data = Encoding.ASCII.GetBytes(stringData);
                     stream.Write(data, 0, data.Length);
                 }
                 catch (System.Exception e)
