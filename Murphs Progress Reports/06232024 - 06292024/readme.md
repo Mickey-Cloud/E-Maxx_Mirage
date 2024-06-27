@@ -44,9 +44,12 @@ instead of what it was before:
 That might have been it? Ive tested it all here now and it all seems to be working, I read the uart tx on the pi using a logic analyzer and a serial ttl usb thingy in putty. all seemed good. The logic anaylzer actually worked perfectly, i was suprised no data was lost with it cause I've had bad luck with the digielent analog discovery before. 
 
 Heres the received data on the raspberry pi coming straight from unity over TCP:
+
 ![Alt text](pi.jpg?raw=true "Raspberry pi end")
 
+
 And heres what the analog discovery 2 logic anaylizer captured on the raspberry pis uart tx pin:
+
 ![Alt text](discovery.jpg?raw=true "Logic anaylzer end")
 
 Oh yeah, all work done today was at my computer with the vr headset connected. Tomorrow when i meet up with nick, im gonna just manually scrub the rotation values of the camera game object in unity to mimick headmovement from the vr headset. Make sure to use the EMPTY scene file, not the other jibberish one. Oh, also, disable the tracked pose driver (input system) component of the camera gameobject before enabling the testmove script.
