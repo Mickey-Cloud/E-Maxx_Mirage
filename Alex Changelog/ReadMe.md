@@ -70,3 +70,7 @@ I didn't have the potentiometers to test today but I did use my old digital pote
 # 6/12/2024
 The rev 4 board woks great! I will start working on the enclosure but it works great!
 ![alt text](REV_4_FInal.jpg)
+
+# 6/28//2024
+I am now back from my vacation and have working on creating a better 3d model that fits the existing transmitter. This is it currently.
+![alt text](<3d Enclosure better.png>) I plan on working on it more this weekend.
