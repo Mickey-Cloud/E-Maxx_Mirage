@@ -4,10 +4,11 @@ extern "C" {
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"
 #include <libswscale/swscale.h>
+#include <libavutil/avutil.h>
 #include <inttypes.h>
 }
 
-bool video_reader_open(VideoReaderState* state, const char* filename) {
+bool video_reader_open(VideoReaderState* state, const char* input_url) {
 	auto& av_format_ctx = state->av_format_ctx;
 	auto& av_codec_ctx = state->av_codec_ctx;
 	auto& av_frame = state->av_frame;
@@ -29,17 +30,22 @@ bool video_reader_open(VideoReaderState* state, const char* filename) {
 												ReadFunc,
 												0,
 												SeekFunc);*/
-
-
+	
 	av_format_ctx = avformat_alloc_context();
 	if (!av_format_ctx) {
 		Debug::Log("Couldn't create AVFormatContext", Color::Red);
 		return false;
 	}
-	if (avformat_open_input(&av_format_ctx, filename, NULL, NULL) != 0) {
+	if (avformat_open_input(&av_format_ctx, input_url, NULL, NULL) != 0) {
 		Debug::Log("Couldn't open video file", Color::Red);
 		return false;
 	}
+	// Retrieve stream information
+	if (avformat_find_stream_info(av_format_ctx, NULL) < 0) {
+		fprintf(stderr, "Could not find stream information\n");
+		return -1;
+	}
+
 	//av_format_ctx->pb = av_io_ctx;
 	//find video stream within the file
 	for (int i = 0; i < av_format_ctx->nb_streams; ++i) {

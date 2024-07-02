@@ -34,7 +34,7 @@ void TextureUpdateCallback(int eventID, void* data)
         unsigned int frame = params->userData;
 
         if (!vr_state.ranOnce) {
-            if (!video_reader_open(&vr_state, "/Users/mikem/test.mp4")) {
+            if (!video_reader_open(&vr_state, "tcp:127.0.0.1:8000")) {
                 //write some fail debug
                 Debug::Log("Couldn't open video reader", Color::Red);
             }

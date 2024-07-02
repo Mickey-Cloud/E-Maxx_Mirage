@@ -16,7 +16,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         _command = new CommandBuffer();
-        _texture = new Texture2D(1080, 1920, TextureFormat.RGBA32, false);
+        _texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
         _texture.wrapMode = TextureWrapMode.Clamp;
 
         // Set the texture to the renderer with using a property block.
