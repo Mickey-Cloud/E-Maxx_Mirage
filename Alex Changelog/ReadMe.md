@@ -74,3 +74,10 @@ The rev 4 board woks great! I will start working on the enclosure but it works g
 # 6/28//2024
 I am now back from my vacation and have working on creating a better 3d model that fits the existing transmitter. This is it currently.
 ![alt text](<3d Enclosure better.png>) I plan on working on it more this weekend.
+
+# 7/2/2024
+Today I printed my test design and it turns out I was way off on the dimensions.
+![alt text](IMG_1518.png)
+I have already begun working on a rev 2 that I am checking all dimensions for. So far it is much cleaner than the first design.
+![alt text](<3D enclosure rev2 partial.png>)
+I will finish working on this and will hopefully have a new one printed later this week or next week.
