@@ -81,3 +81,9 @@ Today I printed my test design and it turns out I was way off on the dimensions.
 I have already begun working on a rev 2 that I am checking all dimensions for. So far it is much cleaner than the first design.
 ![alt text](<3D enclosure rev2 partial.png>)
 I will finish working on this and will hopefully have a new one printed later this week or next week.
+
+# 7/4/2024
+Finished my new design today you can see the pictures of it here. I am waiting to get some confirmation measurements before I print it.
+![alt text](<Enclosure rev 2 complete front.png>)
+![alt text](<Enclosure rev 2 complete side.png>)
+![alt text](<Enclosure rev 2 complete back.png>)
