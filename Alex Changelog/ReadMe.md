@@ -87,4 +87,5 @@ Finished my new design today you can see the pictures of it here. I am waiting t
 ![alt text](<Enclosure rev 2 complete front.png>)
 ![alt text](<Enclosure rev 2 complete side.png>)
 ![alt text](<Enclosure rev 2 complete back.png>)
+
 I plan to have this checked and printed soon and hopefully early next week I can actually assemble it. Once assembled I might create another piece that would clasp on the front. This is not a priority but would be nice to have.
