@@ -89,7 +89,7 @@ public class Transmit : MonoBehaviour
                                                 thing = $"R{Math.Round(zAxis, 2)}" + '\r';
                                                 break;
                                         }*/
-                    string stringData = usingMurphs ? $"{xAxis} {yAxis}\n" : $"R{zAxis}" + '\r' + $"Y{yAxis}" + '\r' + $"P{xAxis}" + '\r';
+                    string stringData = usingMurphs ? $"{xAxis} {yAxis}\n" : "R" + (zAxis.ToString().Contains('.') ? zAxis : zAxis.ToString() + ".0") + '\r' + "Y" + (yAxis.ToString().Contains('.') ? yAxis : yAxis.ToString() + ".0")+ '\r' + "P" + (xAxis.ToString().Contains('.') ? xAxis : xAxis.ToString() + ".0") + '\r';
                     byte[] data = Encoding.ASCII.GetBytes(stringData);
                     stream.Write(data, 0, data.Length);
                 }
