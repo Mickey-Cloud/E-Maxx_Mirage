@@ -21,7 +21,7 @@ public class Transmit : MonoBehaviour
     {
         listener = new TcpListener(IPAddress.Any, 8080);
         listener.Start();
-        Debug.Log("Server started on localhost:8080");
+        Debug.Log("Server started on localhost:8080 " + IPAddress.Any.ToString());
         clientThread = new Thread(new ThreadStart(HandleClient));
         clientThread.Start();
         StartCoroutine(SendDataCoroutine());
