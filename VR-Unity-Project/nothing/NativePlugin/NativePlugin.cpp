@@ -24,6 +24,12 @@ uint32_t Plasma(int x, int y, int width, int height, unsigned int frame)
     return r + (g << 8) + (b << 16) + 0x00000000u;
 }
 
+void CloseVideoConnection() {
+    if (!video_reader_close(&vr_state)) {
+        Debug::Log("Couldn't Close video reader", Color::Red);
+    }
+}
+
 // Callback for texture update events
 void TextureUpdateCallback(int eventID, void* data)
 {
@@ -34,8 +40,7 @@ void TextureUpdateCallback(int eventID, void* data)
         unsigned int frame = params->userData;
 
         if (!vr_state.ranOnce) {
-            if (!video_reader_open(&vr_state, "tcp:127.0.0.1:8000")) {
-                //write some fail debug
+            if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
                 Debug::Log("Couldn't open video reader", Color::Red);
             }
         Debug::Log("Video width:");
@@ -56,10 +61,6 @@ void TextureUpdateCallback(int eventID, void* data)
         Debug::Log((double)params->height, Color::Green);
 
         img = (uint32_t*)frame_data;
-        /*for (int y = 0; y < params->height; y++) 
-            for (int x = 0; x < params->width; x++) 
-                img[y * params->width + x] =
-                Plasma(x, y, params->width, params->height, frame);*/
 
         params->texData = img;
     }
@@ -75,6 +76,12 @@ extern "C" {
 	int DLL_EXPORT SimpleReturnFun() {
 		return 10;
 	}
+
+    int DLL_EXPORT CloseVideoConnectionExport() {
+        Debug::Log("Closed Video Connection");
+        CloseVideoConnection();
+        return 10;
+    }
 
     UnityRenderingEventAndData UNITY_INTERFACE_EXPORT GetTextureUpdateCallback()
     {

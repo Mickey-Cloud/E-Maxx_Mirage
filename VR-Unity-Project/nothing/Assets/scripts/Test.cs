@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Runtime.InteropServices;
 
 public class Test : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Test : MonoBehaviour
     [System.Runtime.InteropServices.DllImport("NativePlugin")]
 #endif
     static extern System.IntPtr GetTextureUpdateCallback();
+    [DllImport("NativePlugin")]
+    private static extern int CloseVideoConnectionExport();
 
     void Start()
     {
@@ -27,6 +30,7 @@ public class Test : MonoBehaviour
 
     void OnDestroy()
     {
+        CloseVideoConnectionExport();
         _command.Dispose();
         Destroy(_texture);
     }
