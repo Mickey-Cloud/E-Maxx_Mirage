@@ -40,7 +40,7 @@ void TextureUpdateCallback(int eventID, void* data)
         unsigned int frame = params->userData;
 
         if (!vr_state.ranOnce) {
-            if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
+            if (!video_reader_open(&vr_state, "tcp://hdr.local:8000")) {
                 Debug::Log("Couldn't open video reader", Color::Red);
             }
         Debug::Log("Video width:");

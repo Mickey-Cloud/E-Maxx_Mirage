@@ -39,7 +39,7 @@ public class Test : MonoBehaviour
     {
         // Request texture update via the command buffer.
         _command.IssuePluginCustomTextureUpdateV2(
-            GetTextureUpdateCallback(), _texture, (uint)(Time.time * 60)
+            GetTextureUpdateCallback(), _texture, (uint)(Time.time * 45)
         );
         Graphics.ExecuteCommandBuffer(_command);
         _command.Clear();
