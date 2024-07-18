@@ -15,6 +15,8 @@ extern "C" {
 
 	int DLL_EXPORT CloseVideoConnectionExport();
 
+	int DLL_EXPORT StartVideoConnectionExport();
+
 	UnityRenderingEventAndData UNITY_INTERFACE_EXPORT GetTextureUpdateCallback();
 }
 #endif

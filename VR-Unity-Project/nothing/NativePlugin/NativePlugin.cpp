@@ -25,8 +25,21 @@ uint32_t Plasma(int x, int y, int width, int height, unsigned int frame)
 }
 
 void CloseVideoConnection() {
-    if (!video_reader_close(&vr_state)) {
+    vr_state.ranQuit = true;
+    /*if (!video_reader_close(&vr_state)) {
         Debug::Log("Couldn't Close video reader", Color::Red);
+    }*/
+}
+
+void StartVideoConnection() {
+    if (!vr_state.ranOnce) {
+        if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
+            Debug::Log("Couldn't open video reader", Color::Red);
+        }
+        Debug::Log("Video width:");
+        Debug::Log(vr_state.width);
+        Debug::Log("Video Height:");
+        Debug::Log(vr_state.height);
     }
 }
 
@@ -38,16 +51,7 @@ void TextureUpdateCallback(int eventID, void* data)
         // UpdateTextureBegin: Generate and return texture image data.
         UnityRenderingExtTextureUpdateParamsV2* params = (UnityRenderingExtTextureUpdateParamsV2*)data;
         unsigned int frame = params->userData;
-
-        if (!vr_state.ranOnce) {
-            if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
-                Debug::Log("Couldn't open video reader", Color::Red);
-            }
-            Debug::Log("Video width:");
-            Debug::Log(vr_state.width);
-            Debug::Log("Video Height:");
-            Debug::Log(vr_state.height);
-        }
+        StartVideoConnection();
         const int frame_width = vr_state.width;
         const int frame_height = vr_state.height;
         uint8_t* frame_data = new uint8_t[frame_width * frame_height * 4];
@@ -56,13 +60,7 @@ void TextureUpdateCallback(int eventID, void* data)
             Debug::Log("Couldn't load video frame");
         }
 
-        uint32_t* img = (uint32_t*)malloc(params->width * params->height * 4);
-        Debug::Log((double)params->width, Color::Blue);
-        Debug::Log((double)params->height, Color::Green);
-
-        img = (uint32_t*)frame_data;
-
-        params->texData = img;
+        params->texData = (uint32_t*)frame_data;
     }
     else if (eventID == kUnityRenderingExtEventUpdateTextureEndV2)
     {
@@ -78,9 +76,14 @@ extern "C" {
     }
 
     int DLL_EXPORT CloseVideoConnectionExport() {
-        Debug::Log("Closed Video Connection");
         CloseVideoConnection();
         return 10;
+    }
+
+    int DLL_EXPORT StartVideoConnectionExport() {
+        Debug::Log("Start Video Feed");
+        StartVideoConnection();
+        return 5;
     }
 
     UnityRenderingEventAndData UNITY_INTERFACE_EXPORT GetTextureUpdateCallback()

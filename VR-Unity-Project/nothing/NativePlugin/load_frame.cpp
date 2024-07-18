@@ -145,11 +145,6 @@ bool video_reader_read_frame(VideoReaderState* state, uint8_t* frame_buffer) {
 		break;
 	}
 
-	Debug::Log(av_codec_ctx->pix_fmt, Color::Orange);
-	Debug::Log("Dest Height:");
-	Debug::Log(av_frame->height);
-	Debug::Log("Dest Width:");
-	Debug::Log(av_frame->width);
 	if (!sws_scaler_ctx) {
 		sws_scaler_ctx = sws_getContext(width, height,
 			av_codec_ctx->pix_fmt,

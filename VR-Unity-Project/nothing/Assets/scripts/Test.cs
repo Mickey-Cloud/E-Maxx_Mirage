@@ -15,6 +15,8 @@ public class Test : MonoBehaviour
     static extern System.IntPtr GetTextureUpdateCallback();
     [DllImport("NativePlugin")]
     private static extern int CloseVideoConnectionExport();
+    [DllImport("NativePlugin")]
+    private static extern int StartVideoConnectionExport();
 
     void Start()
     {
@@ -26,6 +28,8 @@ public class Test : MonoBehaviour
         var prop = new MaterialPropertyBlock();
         prop.SetTexture("_MainTex", _texture);
         GetComponent<Renderer>().SetPropertyBlock(prop);
+        CloseVideoConnectionExport();
+        StartVideoConnectionExport();
     }
 
     void OnDestroy()
@@ -43,9 +47,5 @@ public class Test : MonoBehaviour
         );
         Graphics.ExecuteCommandBuffer(_command);
         _command.Clear();
-
-        // Debug.Log("Rotate");
-        // // Rotation
-        // transform.eulerAngles = new Vector3(10, 20, 30) * Time.time;
     }
 }
