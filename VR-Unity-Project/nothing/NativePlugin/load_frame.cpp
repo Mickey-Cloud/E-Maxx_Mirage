@@ -1,3 +1,4 @@
+
 #include "DebugCPP.h"
 #include "load_frame.h"
 extern "C" {
@@ -20,7 +21,7 @@ bool video_reader_open(VideoReaderState* state, const char* input_url) {
 	Debug::Log("Ran Once: ", Color::White);
 	Debug::Log(state->ranOnce, Color::White);
 	Debug::Log("We Got to the start of setup", Color::Blue);
-	
+
 	av_format_ctx = avformat_alloc_context();
 	if (!av_format_ctx) {
 		Debug::Log("Couldn't create AVFormatContext", Color::Red);
@@ -99,7 +100,7 @@ bool video_reader_open(VideoReaderState* state, const char* input_url) {
 		Debug::Log("Couldn't allocate AVPacket", Color::Red);
 		return false;
 	}
-	
+
 	state->ranOnce = true;
 	Debug::Log("Ran Once: ", Color::White);
 	Debug::Log(state->ranOnce, Color::White);
@@ -160,7 +161,7 @@ bool video_reader_read_frame(VideoReaderState* state, uint8_t* frame_buffer) {
 			return false;
 		}
 	}
-	
+
 	int dest_linesize[1] = { width * 4 };
 	uint8_t* dest[1] = { frame_buffer };
 
@@ -184,4 +185,3 @@ bool video_reader_close(VideoReaderState* state) {
 	avcodec_free_context(&av_codec_ctx);
 	return false;
 }
-

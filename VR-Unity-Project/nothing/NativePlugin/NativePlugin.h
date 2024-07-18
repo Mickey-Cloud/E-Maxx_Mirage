@@ -13,6 +13,8 @@ struct IUnityInterfaces;
 extern "C" {
 	int DLL_EXPORT SimpleReturnFun();
 
+	int DLL_EXPORT CloseVideoConnectionExport();
+
 	UnityRenderingEventAndData UNITY_INTERFACE_EXPORT GetTextureUpdateCallback();
 }
 #endif

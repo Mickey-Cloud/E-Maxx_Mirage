@@ -40,13 +40,13 @@ void TextureUpdateCallback(int eventID, void* data)
         unsigned int frame = params->userData;
 
         if (!vr_state.ranOnce) {
-            if (!video_reader_open(&vr_state, "tcp://hdr.local:8000")) {
+            if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
                 Debug::Log("Couldn't open video reader", Color::Red);
             }
-        Debug::Log("Video width:");
-        Debug::Log(vr_state.width);
-        Debug::Log("Video Height:");
-        Debug::Log(vr_state.height);
+            Debug::Log("Video width:");
+            Debug::Log(vr_state.width);
+            Debug::Log("Video Height:");
+            Debug::Log(vr_state.height);
         }
         const int frame_width = vr_state.width;
         const int frame_height = vr_state.height;
@@ -56,7 +56,7 @@ void TextureUpdateCallback(int eventID, void* data)
             Debug::Log("Couldn't load video frame");
         }
 
-        uint32_t* img = (uint32_t*) malloc(params->width * params->height * 4);
+        uint32_t* img = (uint32_t*)malloc(params->width * params->height * 4);
         Debug::Log((double)params->width, Color::Blue);
         Debug::Log((double)params->height, Color::Green);
 
@@ -73,9 +73,9 @@ void TextureUpdateCallback(int eventID, void* data)
 }
 
 extern "C" {
-	int DLL_EXPORT SimpleReturnFun() {
-		return 10;
-	}
+    int DLL_EXPORT SimpleReturnFun() {
+        return 10;
+    }
 
     int DLL_EXPORT CloseVideoConnectionExport() {
         Debug::Log("Closed Video Connection");
