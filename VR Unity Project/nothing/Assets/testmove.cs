@@ -30,7 +30,7 @@ public class testmove : MonoBehaviour
             yaxis = (y * 160) / 10 - 80;
             tim = tim + Time.deltaTime;
             transform.eulerAngles = new Vector3(0, (int)yaxis, 0);
-            Debug.Log(yaxis);
+            //Debug.Log(yaxis);
         }
         if (tim > 20 && tim < 30)
         {
@@ -38,7 +38,7 @@ public class testmove : MonoBehaviour
             zaxis = (z * 160) / 10 - 80;
             tim = tim + Time.deltaTime;
             transform.eulerAngles = new Vector3(0, 0, (int)zaxis);
-            Debug.Log(zaxis);
+            //Debug.Log(zaxis);
         }
         if (tim > 30)
         {

@@ -1,0 +1,12 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  DebugCPP.cpp
+  load_frame.cpp
+  NativePlugin.cpp
+  Socket.cpp
+C:\Data\Git\Senior_Project\VR-Unity-Project\nothing\NativePlugin\load_frame.h(2,10): error C1083: Cannot open include file: 'libavcodec/avcodec.h': No such file or directory
+  (compiling source file 'load_frame.cpp')
+  
+C:\Data\Git\Senior_Project\VR-Unity-Project\nothing\NativePlugin\ffmpeg-master-latest-win64-gpl-shared\include\libavcodec\avcodec.h(30,10): error C1083: Cannot open include file: '/ffmpeg/ffmpeg-7.0.1/libavutil/samplefmt.h': No such file or directory
+  (compiling source file 'NativePlugin.cpp')
+  
+  Generating Code...

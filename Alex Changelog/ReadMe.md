@@ -89,3 +89,11 @@ Finished my new design today you can see the pictures of it here. I am waiting t
 ![alt text](<Enclosure rev 2 complete back.png>)
 
 I plan to have this checked and printed soon and hopefully early next week I can actually assemble it. Once assembled I might create another piece that would clasp on the front. This is not a priority but would be nice to have.
+
+# 7/9/2024
+Today I got my new enclosure. It did not fit perfectly however it fit well enough. Honestly I might just leave it as is. I will take it apart and clean up some of the wiring to help with crosstalk but we did test it briefly and it seemed to be working. Steering worked well driving didn't but thats likely due to the driving needing to be adjusted. 
+![alt text](<EnclosureREV3Front.jpg>)
+![alt text](<EnclosureREV3Back.jpg>)
+
+I am going to look into creating a new enclosure to make it perfect but I will first focus on making the driving experience better. I was able to make the pi boot the program automatically or at least a think so.
+

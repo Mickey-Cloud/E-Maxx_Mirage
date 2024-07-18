@@ -10,3 +10,5 @@
 |1 x 6 Pin Connect .1 mm spacing | 3 | $1.56|
 |1 x 4 Pin Connect .1 mm spacing | 3 | $1.41|
 |Potentiometer Circuit Board REV 4| 3 | $21.45|
+|3d Enclosure REV1|1|$5.50|
+|3d Enclosure REV2|1|$5.50|
