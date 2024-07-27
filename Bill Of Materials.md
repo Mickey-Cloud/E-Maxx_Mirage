@@ -12,3 +12,6 @@
 |Potentiometer Circuit Board REV 4| 3 | $21.45|
 |3d Enclosure REV1|1|$5.50|
 |3d Enclosure REV2|1|$5.50|
+|Multi Cell Lithiom Ion Battery charger|2|$9|
+|Stepper Motor Driver|3|$8|
+|Lithiom Ion Better Charger 4 cell|2|$10|
