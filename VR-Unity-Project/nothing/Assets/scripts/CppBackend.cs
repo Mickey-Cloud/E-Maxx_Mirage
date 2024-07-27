@@ -6,10 +6,4 @@ using UnityEngine;
 public class CppBackend : MonoBehaviour
 {
     
-    [DllImport("NativePlugin")]
-    private static extern int SimpleReturnFun();
-
-    private void Start(){
-        Debug.Log(SimpleReturnFun());
-    }
 }

@@ -13,8 +13,7 @@ public class Test : MonoBehaviour
     [System.Runtime.InteropServices.DllImport("NativePlugin")]
 #endif
     static extern System.IntPtr GetTextureUpdateCallback();
-    [DllImport("NativePlugin")]
-    private static extern int CloseVideoConnectionExport();
+    
 
     void Start()
     {
@@ -30,7 +29,6 @@ public class Test : MonoBehaviour
 
     void OnDestroy()
     {
-        CloseVideoConnectionExport();
         _command.Dispose();
         Destroy(_texture);
     }
@@ -39,13 +37,9 @@ public class Test : MonoBehaviour
     {
         // Request texture update via the command buffer.
         _command.IssuePluginCustomTextureUpdateV2(
-            GetTextureUpdateCallback(), _texture, (uint)(Time.time * 45)
+            GetTextureUpdateCallback(), _texture, (uint)(Time.time * 60)
         );
         Graphics.ExecuteCommandBuffer(_command);
         _command.Clear();
-
-        // Debug.Log("Rotate");
-        // // Rotation
-        // transform.eulerAngles = new Vector3(10, 20, 30) * Time.time;
     }
 }

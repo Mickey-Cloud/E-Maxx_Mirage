@@ -104,8 +104,6 @@ bool video_reader_open(VideoReaderState* state, const char* input_url) {
 	Debug::Log("Ran Once: ", Color::White);
 	Debug::Log(state->ranOnce, Color::White);
 	Debug::Log("Setup Finished", Color::Green);
-
-
 }
 
 bool video_reader_read_frame(VideoReaderState* state, uint8_t* frame_buffer) {
