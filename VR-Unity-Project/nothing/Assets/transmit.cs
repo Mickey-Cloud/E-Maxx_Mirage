@@ -16,6 +16,8 @@ public class Transmit : MonoBehaviour
     private bool isRunning = true;
     // private int thingy = 0;
     public bool usingMurphs;
+    
+    private int yOffset;
 
     void Start()
     {
@@ -25,6 +27,15 @@ public class Transmit : MonoBehaviour
         clientThread = new Thread(new ThreadStart(HandleClient));
         clientThread.Start();
         StartCoroutine(SendDataCoroutine());
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            yOffset = yOffset - 5;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)){
+            yOffset = yOffset + 5;
+        }
     }
 
     void HandleClient()
@@ -70,6 +81,13 @@ public class Transmit : MonoBehaviour
                 {
                     double xAxis = Math.Round(gameObject.transform.eulerAngles.x, 3);
                     double yAxis = Math.Round(gameObject.transform.eulerAngles.y, 3);
+                    yAxis = yAxis + yOffset;
+                    while (yAxis < 0){
+                        yAxis = yAxis + 360;
+                    }
+                    while (yAxis > 360){
+                        yAxis = yAxis - 360;
+                    } 
                     double zAxis = Math.Round(gameObject.transform.eulerAngles.z, 3);
                     /*                    thingy += 1;
                                         string thing = "";
