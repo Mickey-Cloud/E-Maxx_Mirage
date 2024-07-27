@@ -1,11 +1,20 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using System.Net;
+using System.Net.Sockets;
 
 public class Test : MonoBehaviour
 {
     Texture2D _texture;
     CommandBuffer _command;
+    bool start = false;
+    bool startReceiving = true;
+    public string host = "hdr3.local";
+    public int port = 8000;
 
 #if PLATFORM_IOS
     [System.Runtime.InteropServices.DllImport("__Internal")]
@@ -28,8 +37,7 @@ public class Test : MonoBehaviour
         var prop = new MaterialPropertyBlock();
         prop.SetTexture("_MainTex", _texture);
         GetComponent<Renderer>().SetPropertyBlock(prop);
-        CloseVideoConnectionExport();
-        StartVideoConnectionExport();
+        
     }
 
     void OnDestroy()
@@ -39,13 +47,68 @@ public class Test : MonoBehaviour
         Destroy(_texture);
     }
 
+
+    void CheckPort(string host, int port)
+    {
+        using (TcpClient client = new TcpClient())
+        {
+            try
+            {
+                client.ReceiveTimeout = 1000;
+                client.SendTimeout = 1000;
+                var result = client.BeginConnect(host, port, null, null);
+                bool success = result.AsyncWaitHandle.WaitOne(1000, true);
+                
+                if (success && client.Connected)
+                {
+                    Debug.Log($"Port {port} on {host} is open.");
+                }
+                else
+                {
+                    Debug.Log($"Port {port} on {host} is closed.");
+                }
+                client.EndConnect(result);
+            }
+            catch
+            {
+                Debug.Log($"Port {port} on {host} is closed.");
+            }
+        }
+    }
+
     void Update()
     {
-        // Request texture update via the command buffer.
-        _command.IssuePluginCustomTextureUpdateV2(
-            GetTextureUpdateCallback(), _texture, (uint)(Time.time * 45)
-        );
-        Graphics.ExecuteCommandBuffer(_command);
-        _command.Clear();
+        if (Input.GetKeyDown(KeyCode.P)){
+            Debug.Log("Checking Port");
+            CheckPort(host, port);
+        }
+        if (Input.GetKeyDown(KeyCode.C)){
+            Debug.Log("close");
+            start = false;
+            CloseVideoConnectionExport();
+        }
+        if (Input.GetKeyDown(KeyCode.S)){
+            Debug.Log("start");
+            start = true;
+        }
+        if(start){
+            //StartVideoConnectionExport();
+            if (Input.GetKeyDown(KeyCode.A)) {
+                Debug.Log("Activate");
+                startReceiving = true;
+            }
+            if (Input.GetKeyDown(KeyCode.D)) {
+                Debug.Log("Deactivate");
+                startReceiving = false;
+            }
+            if(startReceiving){
+                // Request texture update via the command buffer.
+                _command.IssuePluginCustomTextureUpdateV2(
+                    GetTextureUpdateCallback(), _texture, (uint)(Time.time * 45)
+                );
+                Graphics.ExecuteCommandBuffer(_command);
+                _command.Clear();
+            }
+        }
     }
 }

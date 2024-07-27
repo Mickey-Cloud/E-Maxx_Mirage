@@ -25,10 +25,12 @@ uint32_t Plasma(int x, int y, int width, int height, unsigned int frame)
 }
 
 void CloseVideoConnection() {
-    vr_state.ranQuit = true;
-    /*if (!video_reader_close(&vr_state)) {
+    vr_state.ranOnce = false;
+    if (!video_reader_close(&vr_state)) {
         Debug::Log("Couldn't Close video reader", Color::Red);
-    }*/
+    }
+    Debug::Log("Closed Video Connection", Color::Green);
+    Debug::Log(vr_state.ranOnce, Color::Blue);
 }
 
 void StartVideoConnection() {
@@ -36,10 +38,6 @@ void StartVideoConnection() {
         if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
             Debug::Log("Couldn't open video reader", Color::Red);
         }
-        Debug::Log("Video width:");
-        Debug::Log(vr_state.width);
-        Debug::Log("Video Height:");
-        Debug::Log(vr_state.height);
     }
 }
 

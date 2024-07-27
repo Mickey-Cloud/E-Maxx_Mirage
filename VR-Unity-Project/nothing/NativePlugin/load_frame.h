@@ -9,7 +9,6 @@ struct VideoReaderState {
 	//public things for other parts of the program
 	int width, height;
 	bool ranOnce = false;
-	bool ranQuit = false;
 	// private internal state
 	AVFormatContext* av_format_ctx;
 	AVCodecContext* av_codec_ctx;

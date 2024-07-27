@@ -172,11 +172,12 @@ bool video_reader_close(VideoReaderState* state) {
 	auto& av_frame = state->av_frame;
 	auto& av_packet = state->av_packet;
 	auto& sws_scaler_ctx = state->sws_scaler_ctx;
+	state->ranOnce = false;
 	sws_freeContext(sws_scaler_ctx);
 	avformat_close_input(&av_format_ctx);
 	avformat_free_context(av_format_ctx);
 	av_frame_free(&av_frame);
 	av_packet_free(&av_packet);
 	avcodec_free_context(&av_codec_ctx);
-	return false;
+	return true;
 }

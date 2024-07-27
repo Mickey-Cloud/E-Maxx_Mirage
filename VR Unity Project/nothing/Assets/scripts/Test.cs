@@ -41,8 +41,8 @@ public class Test : MonoBehaviour
         Graphics.ExecuteCommandBuffer(_command);
         _command.Clear();
 
-        Debug.Log("Rotate");
-        // Rotation
-        transform.eulerAngles = new Vector3(10, 20, 30) * Time.time;
+        // Debug.Log("Rotate");
+        // // Rotation
+        // transform.eulerAngles = new Vector3(10, 20, 30) * Time.time;
     }
 }
