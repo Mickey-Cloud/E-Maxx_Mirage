@@ -29,6 +29,7 @@ public class Test : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 90;
         _command = new CommandBuffer();
         _texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
         _texture.wrapMode = TextureWrapMode.Clamp;
