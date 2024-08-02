@@ -35,7 +35,7 @@ void CloseVideoConnection() {
 
 void StartVideoConnection() {
     if (!vr_state.ranOnce) {
-        if (!video_reader_open(&vr_state, "tcp://hdr3.local:8000")) {
+        if (!video_reader_open(&vr_state, "tcp://hdr7.local:8000")) {
             Debug::Log("Couldn't open video reader", Color::Red);
         }
     }
