@@ -45,7 +45,9 @@ void release_lock() {
     pthread_mutex_unlock(&buffer_mutex);
 }
 
-//methods  for force feedback
+    /**
+    *Used to initialize force feedback.
+    */
 void initialize_effects(int fd) {
     struct ff_effect effect_spring, effect_light_rumble, effect_aggressive_rumble, effect_damper;
 
@@ -65,7 +67,7 @@ void initialize_effects(int fd) {
     // Upload the spring effect to the device
     if (ioctl(fd, EVIOCSFF, &effect_spring) == -1) {
         perror("Error uploading spring effect");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     // Initialize the damper effect
@@ -84,7 +86,7 @@ void initialize_effects(int fd) {
     // Upload the damper effect to the device
     if (ioctl(fd, EVIOCSFF, &effect_damper) == -1) {
         perror("Error uploading damper effect");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     // Initialize the light rumble effect
@@ -99,7 +101,7 @@ void initialize_effects(int fd) {
     // Upload the light rumble effect to the device
     if (ioctl(fd, EVIOCSFF, &effect_light_rumble) == -1) {
         perror("Error uploading light rumble effect");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     // Initialize the aggressive rumble effect
@@ -113,12 +115,15 @@ void initialize_effects(int fd) {
     // Upload the aggressive rumble effect to the device
     if (ioctl(fd, EVIOCSFF, &effect_aggressive_rumble) == -1) {
         perror("Error uploading aggressive rumble effect");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     printf("Effects uploaded successfully.\n");
 }
 
+    /**
+    *Used to start force feedback effect
+    */
 void start_effect(int fd, int effect_id) {
     struct input_event play;
 
@@ -129,12 +134,12 @@ void start_effect(int fd, int effect_id) {
     // Send a "play" event to start the effect
     if (write(fd, &play, sizeof(play)) == -1) {
         perror("Error starting effect");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
-
-    printf("Spring effect started.\n");
 }
-
+    /**
+    *Used to stop force feedback effect
+    */
 void stop_effect(int fd, int effect_id) {
     struct input_event stop;
 
@@ -145,13 +150,12 @@ void stop_effect(int fd, int effect_id) {
     // Send a "stop" event to stop the effect
     if (write(fd, &stop, sizeof(stop)) == -1) {
         perror("Error stopping effect");
-        exit(EXIT_FAILURE);
     }
-
-    printf("Effect stopped.\n");
 }
 
-
+    /**
+    *updates the spring effect used when car is driving
+    */
 void update_spring_effect(int fd, int stiffness) {
     struct ff_effect effect_spring;
 
@@ -171,10 +175,7 @@ void update_spring_effect(int fd, int stiffness) {
     // Update the spring effect parameters
     if (ioctl(fd, EVIOCSFF, &effect_spring) == -1) {
         perror("Error updating spring effect");
-        exit(EXIT_FAILURE);
     }
-
-    printf("updated Spring effect %d.\n", stiffness);
 }
 
 
@@ -218,26 +219,31 @@ void connectI2c(){
 * write to the digital potentiometer
 */
 void writeI2c(int device, int length, int data){
-    acquire_lock();
+    //acquire_lock();
     //printf("Attempt to write.\n");
     buffer[0] = 0x00;
     buffer[1] = data;
 
     //checks to see if its already written if written then it will exit and not write
     if(device == file_i2c && data == CurrentSteer){
-        //printf("currentSteer\n");
+        //checks if data is already the same and doesn't need to be updated
         return;
     }
         if(device == file_i2c1 && data == CurrentDrive){
-            //printf("currentDrive\n");
+            //checks if data is already the same and doesn't need to be updated
         return;
     }
     //write data
-	if (write(device, buffer, length) != length)		//write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
+	if (write(device, buffer, length) != length)    //write() returns the number of bytes actually written, if it doesn't match then an error occurred (e.g. no response from the device)
 	{
 
 		/* ERROR HANDLING: i2c transaction failed */
 		printf("Failed to write to the i2c bus.\n");
+         ioctl(device, I2C_RDWR, 0);
+        // release_lock();
+        if(data == 63||data==0|data==127){
+         writeI2c(device,length,data);
+        }
         
     }
     else{
@@ -249,8 +255,10 @@ void writeI2c(int device, int length, int data){
             CurrentDrive = data;
         }
     }
+    // Wait for 0.1 seconds (100,000 microseconds)
+    //usleep(1000);
     ioctl(device, I2C_RDWR, 0);
-    release_lock();
+    //release_lock();
 
     }
 /**
@@ -328,15 +336,19 @@ int main() {
         connectI2c();
         //initialize starting conditions
         //pot 1 set to 2.5v
+        acquire_lock();
         writeI2c(file_i2c,2,63);
+        release_lock();
         //set pot 2 tto 2.5v
+        acquire_lock();
         writeI2c(file_i2c1,2,63);
+        release_lock();
 
-    // Open the event device
+    // Open connection to steering wheel
     fd = open(DEV_PATH, O_RDWR);
     if (fd < 0) {
         perror("Error opening device");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     //initialize force feedback
@@ -349,89 +361,98 @@ int main() {
 
         if (read(fd, &ev, sizeof(ev)) < 0) {
             perror("Error reading event");
-            exit(EXIT_FAILURE);
+            //exit(EXIT_FAILURE);
         }
 
         // Check if the event is a button press
         if (ev.type == EV_KEY && ev.value == 1) {
             printf("Button %d pressed\n", ev.code);
+            //change steering sensitivity
             changeSteerMode(ev.code);
+            //change acceleration limit
             changeAccelrateMode(ev.code);
         }
 
         // Check if the event is an absolute axis event (such as a trigger or stick movement)
         if (ev.type == EV_ABS) {
-            if (ev.code == ABS_RZ) { // Brake Pressed
-                printf("Brake pressed reading value: %d\n", ev.value);
+            if (ev.code == ABS_Y) { // clutch Pressed
+                //value from brake range from 0-255 must be adjusted to be between 0-63
                  accelerateValue = (float)ev.value / accelerateRange * 127;
                 accelerateValue -= reverseOffset;
                 
                 //change force feedback
                 if(accelerateValue != 63){
+                    //if car not moving use damping effect
                     stop_effect(fd,1);
                     start_effect(fd,0);
                 }
                 else{
+                    //if car is moving use spring effect
                     start_effect(fd,1);
                     stop_effect(fd,0);
                 }
 
-
+            //always update spring effect even if not active
             update_spring_effect(fd,65535 - (((float)accelerateValue / 127) *131070));
 
-                printf("accelerateValue: %d\n",accelerateValue);
-                writeI2c(file_i2c1,2,accelerateValue);
+            //drive car
+            acquire_lock();
+             writeI2c(file_i2c1,2,accelerateValue);
+             release_lock();
 
 
 
             }
-            if (ev.code == ABS_RZ) { // Clutch pressed
-                printf("clutch pressed reading value: %d\n", ev.value);
-            }
-            if (ev.code == ABS_X) { // Steering Wheel input
-                //printf("Steering wheel moved reading value: %d\n", ev.value);
-                steerValue = (float)ev.value / steerRange * 127;
-                steerValue = 127 - steerValue;
-                steerValue -= steerOffset;
-                
-                if(steerValue > 127){
-                    steerValue = 127;
-                }
-                else if (steerValue < 0 ){
-                    steerValue = 0;
-                }
-                //printf("steerValue: %d\n",steerValue);
-            writeI2c(file_i2c,2,steerValue);
-
-
-            }
-            if (ev.code == ABS_Y) { // Accelerator Pressed
-                printf("Gas pressed reading value: %d\n", ev.value);
+            if (ev.code == ABS_RZ) { // Accelerator Pressed
+            //value from accelerator range from 0-255 must be adjusted to be between 63-127
                 accelerateValue = (float)ev.value / accelerateRange * 127;
                 accelerateValue = 127 - accelerateValue;
                 accelerateValue -= accelerateOffset;
                 
+                
             //change force feedback
                 if(accelerateValue != 63){
+                    accelerateValue = 127;
+                    printf("%d\n",accelerateValue);
+                    //if car not moving use damping effect
                     stop_effect(fd,1);
                     start_effect(fd,0);
                 }
                 else{
+                    //if car is moving use spring effect
                     start_effect(fd,1);
                     stop_effect(fd,0);
                 }
 
-
+                //always update spring effect even if not active
                 update_spring_effect(fd,(((float)accelerateValue / 127) *131070)-65535);
 
-
-                // if(accelerateValue > 70){
-                //     accelerateValue = 70;
-                // }
-                printf("accelerateValue: %d\n",accelerateValue);
+                //drive car
+                acquire_lock();
                 writeI2c(file_i2c1,2,accelerateValue);
+                release_lock();
 
 
+            }
+            if (ev.code == ABS_X) { // Steering Wheel input
+
+            //steer value ranges from 0-65535 must be between 0-127
+            steerValue = (float)ev.value / steerRange * 127;
+            steerValue = 127 - steerValue;
+            steerValue -= steerOffset;
+            
+            //only lets values from 0-127 to be written
+            if(steerValue > 127){
+                steerValue = 127;
+            }
+            else if (steerValue < 0 ){
+                steerValue = 0;
+            }
+
+            //change steering
+            acquire_lock();
+            writeI2c(file_i2c,2,steerValue);
+            release_lock();
             }
 
 
